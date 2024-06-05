@@ -1,0 +1,61 @@
+{{define "hello"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book management app</title>
+
+    <style>
+      ul {
+        list-style-type: none;
+      }
+
+      #app {
+        margin: 0 auto; 
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Book Management App</h1>
+
+      <div>
+        <input type="text" name="" id="book-title" />
+
+        <a href="#" id="custom-link"><button>Add book</button></a>
+
+        
+      </div>
+
+      <ul>
+        {{.}}
+      </ul>
+    </div>
+  </body>
+
+  <script>
+    document
+      .getElementById("custom-link")
+      .addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        var bookTitle = document.getElementById("book-title").value;
+        // Add your custom query parameters here
+        var queryString = "?title=" + bookTitle;
+
+        // Append the query string to the current URL
+        var currentUrl = window.location.href.split("?")[0];
+        var newUrl = currentUrl + queryString;
+
+        
+
+        // Navigate to the new URL
+        window.location.href = newUrl;
+      });
+  </script>
+</html>
+
+
+{{end}}

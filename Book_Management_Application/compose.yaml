@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - db
+
+  db:
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    image: mysql/mysql-server:latest
+    
+    environment:
+      - MYSQL_DATABASE=BooksList
+      - MYSQL_ROOT_PASSWORD=Nta21012001
+
+    volumes:
+      - ./booksListCreate.sql:/docker-entrypoint-initdb.d/init.sql
+    expose:
+      - 3306
